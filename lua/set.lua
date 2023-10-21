@@ -16,6 +16,13 @@ vim.opt.incsearch = true
 vim.opt.wrap = false
 vim.opt.scrolloff = 4
 vim.opt.colorcolumn = "80"
-vim.cmd([[highlight ColorColumn ctermbg=0 guibg=lightgrey]])
+vim.cmd([[hi ColorColumn ctermbg=black guibg=lightgrey]])
+vim.cmd([[hi String ctermfg=green]])
 
+vim.cmd([[hi Type ctermfg=4]])
+
+vim.cmd([[hi PreProc ctermfg=13]])
+
+vim.cmd([[hi Pmenu None]])
+vim.cmd([[hi PmenuSel ctermbg=8]])
 

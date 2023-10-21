@@ -7,14 +7,14 @@ lsp_zero.on_attach(function(client, bufnr)
 end)
 
 local cmp = require('cmp')
+local cmp_action = lsp_zero.cmp_action()
 cmp.setup({
     sources = {
         {name = 'nvim_lsp'},
     },
     mapping = {
-        ['<C-y>'] = cmp.mapping.confirm({select = false}),
-        ['<C-p>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
-        ['<C-n>'] = cmp.mapping.select_next_item({behavior = 'select'}),
+      ['<Tab>'] = cmp_action.tab_complete(),
+      ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
     },
 })
 
