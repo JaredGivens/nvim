@@ -19,10 +19,9 @@ vim.opt.colorcolumn = "80"
 vim.cmd([[hi ColorColumn ctermbg=black guibg=lightgrey]])
 vim.cmd([[hi String ctermfg=green]])
 
+vim.cmd([[hi Identifier ctermfg=grey]])
 vim.cmd([[hi Type ctermfg=4]])
-
 vim.cmd([[hi PreProc ctermfg=13]])
 
 vim.cmd([[hi Pmenu None]])
 vim.cmd([[hi PmenuSel ctermbg=8]])
-
