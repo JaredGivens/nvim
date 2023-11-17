@@ -20,7 +20,23 @@ cmp.setup({
 })
 
 local lspconfig = require('lspconfig')
-lspconfig.tsserver.setup({})
-lspconfig.rust_analyzer.setup({})
-lspconfig.clangd.setup({})
-lspconfig.lua_ls.setup({})
+lsp_zero.setup_servers({'lua_ls', 'rust_analyzer', 'clangd'})
+
+lsp_zero.new_client({
+  name = 'deno_lsp',
+  cmd = {'deno', 'lsp'},
+  filetypes = {'javascript', 'typescript'},
+  root_dir = function()
+    return lsp_zero.dir.find_first({'deno.json'}) 
+  end
+})
+
+lsp_zero.new_client({
+  name = 'tsserver',
+  cmd = {'typescript-language-server'},
+  filetypes = {'javascript', 'typescript'},
+  root_dir = function()
+    return lsp_zero.dir.find_first({'package.json'}) 
+  end
+})
+
