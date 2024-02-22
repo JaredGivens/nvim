@@ -1,4 +1,3 @@
-vim.g.mapleader = " "
 vim.opt.nu = true
 vim.opt.rnu = true
 
@@ -15,7 +14,7 @@ vim.opt.incsearch = true
 
 vim.opt.wrap = false
 vim.opt.scrolloff = 4
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = '80'
 vim.cmd([[hi ColorColumn ctermbg=8]])
 vim.cmd([[hi String ctermfg=10]])
 vim.cmd([[hi Identifier ctermfg=7]])
