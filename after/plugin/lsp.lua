@@ -19,8 +19,9 @@ cmp.setup({
   },
 })
 
+local omnisharpd = os.getenv("OMNISHARP_DIR")
 require('lspconfig').omnisharp.setup {
-  cmd = { "dotnet", "/home/jared/.local/lib/omnisharp/OmniSharp.dll" }
+  cmd = { "dotnet", omnisharpd .. "/OmniSharp.dll" }
 }
 lsp_zero.setup_servers({ 'jdtls', 'lua_ls', 'rust_analyzer', 'clangd', 'omnisharp' })
 
