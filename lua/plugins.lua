@@ -14,21 +14,23 @@ vim.opt.rtp:prepend(lazypath)
 
 -- install plugins
 require('lazy').setup({
+  -- git integration
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  },
+
+  {
+    'lervag/vimtex',
+    init = function()
+      vim.g.vimtex_view_method = 'zathura'
+    end
+  },
   -- jupyter notebooks
   { 'GCBallesteros/jupytext.nvim', config = true, lazy = false },
-  {
-    "benlubas/molten-nvim",
-    version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
-    dependencies = { "3rd/image.nvim" },
-    build = ":UpdateRemotePlugins",
-    init = function()
-      vim.g.molten_auto_open_output = false
-      vim.g.molten_image_provider = "image.nvim"
-      vim.g.molten_output_win_max_height = 20
-      vim.g.molten_virt_text_output = true
-      vim.g.molten_virt_lines_off_by_1 = true
-    end,
-  },
+
   -- images
   {
     '3rd/image.nvim',
