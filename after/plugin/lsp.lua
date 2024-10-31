@@ -20,10 +20,12 @@ cmp.setup({
 })
 
 local omnisharpd = os.getenv("OMNISHARP_DIR")
-require('lspconfig').omnisharp.setup {
-  cmd = { "dotnet", omnisharpd .. "/OmniSharp.dll" }
-}
-lsp_zero.setup_servers({ 'jdtls', 'lua_ls', 'rust_analyzer', 'clangd', 'omnisharp' })
+if omnisharpd ~= nil then
+  require('lspconfig').omnisharp.setup {
+    cmd = { "dotnet", omnisharpd .. "/OmniSharp.dll" }
+  }
+end
+lsp_zero.setup_servers({ 'jdtls', 'lua_ls', 'rust_analyzer', 'clangd' })
 
 lsp_zero.new_client({
   name = 'deno_lsp',
