@@ -16,7 +16,7 @@ vim.opt.wrap = false
 vim.opt.scrolloff = 4
 vim.opt.colorcolumn = '80'
 vim.cmd([[set notermguicolors]])
---vim.cmd([[hi ColorColumn ctermfg=8]])
+vim.cmd([[hi ColorColumn cterm=None ctermbg=8]])
 vim.cmd([[hi String ctermfg=10]])
 vim.cmd([[hi Identifier ctermfg=14]])
 vim.cmd([[hi Function ctermfg=15]])
@@ -33,7 +33,5 @@ vim.cmd([[hi LineNr ctermfg=7]])
 vim.cmd([[hi Statement ctermfg=11]])
 vim.cmd([[hi Comment ctermfg=6]])
 vim.cmd([[hi Special ctermfg=14]])
-
-
 vim.cmd([[hi Pmenu None]])
 vim.cmd([[hi PmenuSel ctermbg=8]])
