@@ -14,6 +14,70 @@ vim.opt.rtp:prepend(lazypath)
 
 -- install plugins
 require('lazy').setup({
+
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+      { "nvim-lua/plenary.nvim", branch = "master" },
+    },
+    build = "make tiktoken", -- Only on MacOS or Linux
+    config = function()
+      require("CopilotChat").setup {}
+    end,
+  },
+  {
+    "mason-org/mason-lspconfig.nvim",
+    opts = { automatic_enable = true },
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
+    },
+  },
+  {
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+      'neovim/nvim-lspconfig',
+    },
+    config = function()
+      local cmp = require('cmp')
+      cmp.setup({
+        sources = {
+          { name = 'nvim_lsp' },
+          { name = 'buffer' },
+          { name = 'path' },
+        },
+        mapping = require('cmp').mapping.preset.insert(),
+        snippet = {
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+          end,
+        },
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' },
+          { name = 'luasnip' }, -- For luasnip users.
+        }, {
+          { name = 'buffer' },
+        })
+      })
+    end,
+  },
+  {
+    "hrsh7th/cmp-nvim-lsp",
+    config = function()
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      vim.lsp.config('*', { capabilities = capabilities })
+    end
+  },
+  'bluz71/nvim-linefly',
+  'Shatur/neovim-ayu',
+  --async make
+  'tpope/vim-dispatch',
   --glsl syntax
   'tikhomirov/vim-glsl',
   'nvim-treesitter/nvim-treesitter',
@@ -34,22 +98,14 @@ require('lazy').setup({
   -- jupyter notebooks
   { 'GCBallesteros/jupytext.nvim', config = true, lazy = false },
 
-  -- fuzzy finder
+  -- fzf
   {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    dependencies = { 'nvim-lua/plenary.nvim' }
-  },
-  -- lsp
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v3.x',
-    dependencies = {
-      'neovim/nvim-lspconfig',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/nvim-cmp',
-      'L3MON4D3/LuaSnip',
-    }
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    -- or if using mini.icons/mini.nvim
+    -- dependencies = { "echasnovski/mini.icons" },
+
   },
   -- icons
   'nvim-tree/nvim-web-devicons'
